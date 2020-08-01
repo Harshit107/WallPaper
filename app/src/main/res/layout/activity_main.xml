@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@drawable/bg_"
     android:fitsSystemWindows="true">
 
@@ -26,10 +27,13 @@
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
                 android:paddingTop="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
                 android:paddingBottom="5dp">
 
                 <ImageView
-                    android:id="@+id/search"
+                    android:id="@+id/search_bt"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:rotation="10"
@@ -40,26 +44,66 @@
 
 
                 <EditText
+                    android:id="@+id/searchValue"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="1dp"
+                    android:inputType="textPersonName"
                     android:textColorHint="@android:color/darker_gray"
                     android:hint="Search here"
                     android:paddingLeft="12dp"
                     android:textColor="@color/white"
-                    android:layout_toLeftOf="@id/search"
+                    android:focusedByDefault="false"
+                    android:layout_toLeftOf="@id/search_bt"
                     android:background="@drawable/corner50"
                     android:elevation="15dp" />
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <RelativeLayout
+            android:id="@+id/progress"
+            android:layout_below="@id/toolbar"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
 
-        <FrameLayout
-            android:id="@+id/contatiner"
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/loading"
+                android:layout_width="30dp"
+
+                android:layout_height="30dp"
+                android:src="@drawable/loading"
+                android:layout_marginLeft="70dp"
+
+                />
+
+            <TextView
+                android:id="@+id/Loading_tv"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:text="Loading..."
+                android:layout_marginLeft="20dp"
+                android:textSize="15dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@id/loading"
+                android:background="@color/transparent"
+                android:elevation="15dp" />
+
+
+
+        </RelativeLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar" />
+            android:id="@+id/imageRecycle"
+            />
+
 
     </RelativeLayout>
 
