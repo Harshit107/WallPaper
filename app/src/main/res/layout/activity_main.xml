@@ -5,15 +5,17 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/bg_"
-    android:fitsSystemWindows="true">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        android:visibility="gone"
+        android:id="@+id/mainRelative"
         >
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -27,9 +29,6 @@
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
                 android:paddingTop="5dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:clickable="true"
                 android:paddingBottom="5dp">
 
                 <ImageView
@@ -38,12 +37,18 @@
                     android:layout_height="40dp"
                     android:rotation="10"
                     android:padding="7dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/search" />
-
+                <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="0px"
+                    android:layout_height="0px" />
 
                 <EditText
+                    android:focusableInTouchMode="true"
                     android:id="@+id/searchValue"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -53,7 +58,6 @@
                     android:hint="Search here"
                     android:paddingLeft="12dp"
                     android:textColor="@color/white"
-                    android:focusedByDefault="false"
                     android:layout_toLeftOf="@id/search_bt"
                     android:background="@drawable/corner50"
                     android:elevation="15dp" />
@@ -71,7 +75,6 @@
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/loading"
                 android:layout_width="30dp"
-
                 android:layout_height="30dp"
                 android:src="@drawable/loading"
                 android:layout_marginLeft="70dp"
@@ -107,6 +110,21 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:visibility="visible"
+        android:id="@+id/splash"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:tint="#F2F3EF"
+            android:src="@drawable/logo_transparent_land"/>
+    </RelativeLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -115,8 +133,28 @@
         android:layout_gravity="start"
         android:background="@drawable/bg_transparent"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main" />
-    <!--        app:menu="@menu/activity_main_drawer" -->
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+
+        android:theme="@style/NavigationDrawerStyle"
+        app:headerLayout="@layout/nav_header_main"
+         app:menu="@menu/activity_main_drawer" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Version : 1.0.0" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 
 

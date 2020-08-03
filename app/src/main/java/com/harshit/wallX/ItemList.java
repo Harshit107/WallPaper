@@ -1,4 +1,4 @@
-package com.harshit.wallpaper;
+package com.harshit.wallX;
 
 public class ItemList {
     private int favourite;

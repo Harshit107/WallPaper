@@ -1,4 +1,4 @@
-package com.harshit.wallpaper;
+package com.harshit.wallX;
 
 import org.junit.Test;
 
