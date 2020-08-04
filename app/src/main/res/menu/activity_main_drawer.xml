@@ -27,10 +27,10 @@
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/ic_rate_review_black_24dp"
                 android:title="Rate Us" />
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_person_black_24dp"
-                android:title="About Us" />
+<!--            <item-->
+<!--                android:id="@+id/nav_about"-->
+<!--                android:icon="@drawable/ic_person_black_24dp"-->
+<!--                android:title="About Us" />-->
     </group>
 
 </menu>
