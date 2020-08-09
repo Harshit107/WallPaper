@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //---------------------  End --------------------
 
         Log.d("searchImage",search_Image);
+
         parseJSON(search_Image);
+
 
 
 
@@ -133,18 +135,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void run() {
                 /* Create an Intent that will start the MainActivity. */
-                Animation animSlideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.push_up_in);
+                Animation animSlideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.side_out_left);
                 splash.startAnimation(animSlideUp);
-
+                mainRelative.setVisibility(View.VISIBLE);
+                splash.setVisibility(View.GONE);
                 // parseJSON("");
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainRelative.setVisibility(View.VISIBLE);
-                        splash.setVisibility(View.GONE);
-
-                    }
-                }, 1000);
+//
 
             }
         }, 1500);
@@ -153,6 +149,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void parseJSON(String s) {
+
+        if (!InternetConnection.checkConnection(getApplicationContext())) {
+            sankeBar("Connection Not available",getCurrentFocus());
+                return;
+        }
 
         loading.setVisibility(View.VISIBLE);
         Log.d("TAG", s);
@@ -306,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             builder.setMessage("Do You Want To exit ?");
             builder.setTitle(R.string.app_name)
-                    .setIcon(getResources().getDrawable(R.drawable.logo_display));
+                    .setIcon(getResources().getDrawable(R.drawable.logo));
             builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -360,8 +361,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void loadMoreJSON(String s) {
-
-
+        if (!InternetConnection.checkConnection(getApplicationContext())) {
+            sankeBar("Connection Not available",getCurrentFocus());
+            return;
+        }
         if(checkLike)
             return;
 

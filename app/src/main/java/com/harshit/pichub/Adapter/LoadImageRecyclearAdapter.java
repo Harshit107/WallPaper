@@ -33,6 +33,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.harshit.pichub.FullImageDetail;
 import com.harshit.pichub.ItemList;
 import com.harshit.pichub.R;
 import com.harshit.pichub.SharedPreferenceValue;
@@ -95,12 +96,12 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
 
         sharedPreferenceValue  = new SharedPreferenceValue(context);
       ItemList selectItem = itemLists.get(position);
-      String imageUrl = selectItem.getImageUrl();
+      final String imageUrl = selectItem.getImageUrl();
       final String downloadImageUrl = selectItem.getDownloadImageUrl();
       int likes = selectItem.getLikes();
       int fav = selectItem.getFavourite();
       int downloads = selectItem.getDownloads();
-      int views = selectItem.getViews();
+      final int views = selectItem.getViews();
       final int id = selectItem.getmId();
       //Log.d("myImageUrl",downloadImageUrl);
 
@@ -204,6 +205,18 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
                 }
             }
         });
+        holder.displayImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("TAG","Clicked");
+                Intent it = new Intent(context, FullImageDetail.class);
+                it.putExtra("imageUri",downloadImageUrl);
+                it.putExtra("views",String.valueOf(views));
+                it.putExtra("id",String.valueOf(id));
+                context.startActivity(it);
+                activity.overridePendingTransition(R.anim.slide_right, R.anim.side_out_left);
+            }
+        });
         holder.share_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -214,7 +227,7 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
                     Uri bmpUri = getLocalBitmapUri(holder.displayImage);
                     if (bmpUri != null) {
                         // Construct a ShareIntent with link to image
-                        if (isStoragePermissionGranted()) {
+
                             Intent shareIntent = new Intent();
                             shareIntent.setAction(Intent.ACTION_SEND);
                             shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out the App at: " +
@@ -226,7 +239,7 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
                             StrictMode.setVmPolicy(builder.build());
                             context.startActivity(Intent.createChooser(shareIntent, "Send Via"));
 
-                        }
+
                     } else {
                         // ...sharing failed, handle error
                         sankeBar("Error ", view);
@@ -355,7 +368,7 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
 
         @Override
         protected String doInBackground(String... url) {
-            File mydir = new File(Environment.getExternalStorageDirectory() + "/WallX");
+            File mydir = new File(Environment.getExternalStorageDirectory() + "/PicHub");
             if (!mydir.exists()) {
                 mydir.mkdirs();
             }
@@ -373,7 +386,7 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
                     DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
                     .setAllowedOverRoaming(false)
                     .setTitle("Downloading Image ")
-                    .setDestinationInExternalPublicDir("/WallX", date + ".jpg");
+                    .setDestinationInExternalPublicDir("/PicHub", date + ".jpg");
 
             manager.enqueue(request);
             return mydir.getAbsolutePath() + File.separator + date + ".jpg";
@@ -420,7 +433,7 @@ public class LoadImageRecyclearAdapter extends RecyclerView.Adapter<LoadImageRec
     public void sankeBar(String msg,View view) {
         Snackbar snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_SHORT);
         View snackBarView = snackbar.getView();
-        snackBarView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        snackBarView.setBackgroundColor(context.getResources().getColor(R.color.darkblue));
         snackbar.show();
     }
 

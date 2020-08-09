@@ -4,18 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0E0E0E"
     tools:context=".FullImageDetail">
 
-    <ImageView
+    <com.alexvasilkov.gestures.views.GestureFrameLayout
+        android:layout_width="match_parent"
+        android:layout_above="@+id/bottom_view"
+        android:layout_height="match_parent">
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <!-- GestureFrameLayout can contain only one child -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"
+                />
+        </FrameLayout>
+    </com.alexvasilkov.gestures.views.GestureFrameLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/bottomLinear"
+        android:id="@+id/bottom_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="9"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/eye"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Views"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="3"
+            android:id="@+id/wallpaper"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_wallpaper_black_24dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/wallpaper_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Wallpaper"
+                android:textColor="@color/white"
+                android:layout_marginTop="6dp"
+
+                android:textSize="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_share_black_24dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:layout_marginTop="5dp"
+
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
+        </LinearLayout>
 
     </LinearLayout>
 

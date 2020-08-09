@@ -5,8 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_"
     tools:context=".MainActivity"
+    android:background="@drawable/bg_"
     android:fitsSystemWindows="true"
     >
 
@@ -113,19 +113,38 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent"
+        android:background="@color/colorPrimaryDark"
         android:visibility="visible"
         android:id="@+id/splash"
         >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="20dp"
+            android:layout_centerInParent="true"
             android:layout_marginRight="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:tint="#F2F3EF"
-            android:src="@drawable/logo_transparent"/>
+            android:src="@drawable/logo"/>
+        <TextView
+            android:id="@+id/logo_tv"
+            android:layout_below="@id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P i c H u b"
+            android:textSize="50sp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textColor="#037FBC"/>
+        <TextView
+
+            android:layout_below="@id/logo_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Best Wallpaper's Collection"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textColor="#037FBC"/>
     </RelativeLayout>
 
 
@@ -155,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="Version : 1.0.0" />
+                android:text="Version : 2.0" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 
